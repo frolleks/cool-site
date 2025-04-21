@@ -1,12 +1,10 @@
 * {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-body {
   font-family: "National Park", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 a {
@@ -18,8 +16,86 @@ a:hover {
   text-decoration: underline;
 }
 
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.tabs {
+  display: grid;
+  padding: 0.4rem;
+  gap: 0.4rem;
+  border: 0.1rem solid #000;
+  background-color: #fff;
+  max-width: calc(var(--count) * 6rem);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  width: 100%;
+  grid-template-columns: repeat(var(--count), minmax(0, 1fr));
+  -webkit-box-shadow: 2.5px 2.5px 0px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2.5px 2.5px 0px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 2.5px 2.5px 0px 0px rgba(0, 0, 0, 0.75);
+}
+
+/* fixme: sections not showing when tab is clicked */
+.section {
+  display: none;
+}
+/* show only the active one */
+.section.section-active {
+  display: block;
+}
+
+.tabs:has(.tab:nth-child(1)) {
+  --count: 1;
+}
+.tabs:has(.tab:nth-child(2)) {
+  --count: 2;
+}
+.tabs:has(.tab:nth-child(3)) {
+  --count: 3;
+}
+.tabs:has(.tab:nth-child(4)) {
+  --count: 4;
+}
+
+.tabs::after {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  transform: scale(0.94, 0.8);
+  --width: calc((100% / var(--count)));
+  width: var(--width);
+  margin-left: calc(var(--active) * var(--width));
+  transition: margin-left 300ms;
+  background-color: #e2e2e2;
+  z-index: -1;
+  border-radius: inherit;
+}
+
+.tabs:has(.tab:nth-child(1).active) {
+  --active: 0;
+}
+
+.tabs:has(.tab:nth-child(2).active) {
+  --active: 1;
+}
+
+.tabs:has(.tab:nth-child(3).active) {
+  --active: 2;
+}
+
+.tab {
+  flex-basis: 200px;
+  font-weight: 500;
+}
+
 .card-container {
   display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
   width: 100%;
   height: 100vh;
   align-items: center;
