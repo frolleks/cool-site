@@ -100,14 +100,22 @@
 
       function setWrapperHeight(section) {
         // Temporarily show the section to measure height
-        section.style.display = "flex";
+        section.style.display = "";
         const height = section.getBoundingClientRect().height;
         sectionWrapper.style.height = height + "px";
       }
 
       // Initialize wrapper height
-      window.addEventListener("DOMContentLoaded", () => {
+      window.addEventListener("load", () => {
         setWrapperHeight(aboutSection);
+      });
+
+      window.addEventListener("resize", () => {
+        const activeSection =
+          aboutSection.style.display !== "none"
+            ? aboutSection
+            : projectsSection;
+        setWrapperHeight(activeSection);
       });
 
       aboutBtn.addEventListener("click", () => {

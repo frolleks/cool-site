@@ -40,6 +40,18 @@ a:hover {
   background-color: #fff;
 }
 
+@media only screen and (max-width: 600px) {
+  .card-section {
+    display: flex;
+    flex-direction: column;
+    width: 28rem;
+    gap: 0.8rem 0;
+    padding: 1rem;
+
+    background-color: #fff;
+  }
+}
+
 .card-section-wrapper {
   transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
