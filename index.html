@@ -18,43 +18,112 @@
   </head>
   <body>
     <div class="card-container">
-      <div class="card">
-        <h2>hey, i'm frolleks!</h2>
-        <p>
-          I'm a fullstack developer who usually works with
-          <a href="https://nextjs.org">Next.js</a>, and I'm also a content
-          creator who makes motivational videos on
-          <a href="https://instagram.com/frolleks">Instagram</a>
-          and
-          <a href="https://tiktok.com/@frolleks_">TikTok</a>.
-        </p>
-        <p>Socials</p>
-        <ul class="social-icons">
-          <li>
-            <a href="https://instagram.com/frolleks" aria-label="Instagram">
-              <i class="fab fa-instagram"></i>
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://discord.com/users/678779767880941589"
-              aria-label="Discord"
-            >
-              <i class="fab fa-discord"></i>
-            </a>
-          </li>
-          <li>
-            <a href="https://x.com/frolleks" aria-label="X">
-              <i class="fab fa-x-twitter"></i>
-            </a>
-          </li>
-          <li>
-            <a href="https://tiktok.com/@frolleks_" aria-label="TikTok">
-              <i class="fab fa-tiktok"></i>
-            </a>
-          </li>
-        </ul>
+      <div class="toggle-container">
+        <button class="toggle-btn active" id="aboutBtn">about</button>
+        <button class="toggle-btn" id="projectsBtn">my projects</button>
+      </div>
+      <div class="card-section-wrapper" id="sectionWrapper">
+        <div class="card-section" id="aboutSection">
+          <h2>hey, i'm frolleks!</h2>
+          <p>
+            I'm a fullstack developer who usually works with
+            <a href="https://nextjs.org">Next.js</a>, and I'm also a content
+            creator who makes motivational videos on
+            <a href="https://instagram.com/frolleks">Instagram</a>
+            and
+            <a href="https://tiktok.com/@frolleks_">TikTok</a>.
+          </p>
+          <p>Socials</p>
+          <ul class="social-icons">
+            <li>
+              <a href="https://instagram.com/frolleks" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://discord.com/users/678779767880941589"
+                aria-label="Discord"
+              >
+                <i class="fab fa-discord"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://x.com/frolleks" aria-label="X">
+                <i class="fab fa-x-twitter"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://tiktok.com/@frolleks_" aria-label="TikTok">
+                <i class="fab fa-tiktok"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-section" id="projectsSection" style="display: none">
+          <h2>my projects</h2>
+          <div class="project-grid">
+            <div class="project-card">
+              <h3>distra</h3>
+              <p>An open source YouTube clone.</p>
+              <a href="https://github.com/frolleks/distra" target="_blank"
+                >View</a
+              >
+            </div>
+            <div class="project-card">
+              <h3>cai-clone</h3>
+              <p>A character.ai clone.</p>
+              <a href="https://github.com/frolleks/cai-clone" target="_blank"
+                >View</a
+              >
+            </div>
+            <div class="project-card">
+              <h3>DecentAuth (coming soon)</h3>
+              <p>An open decentralized SSO authentication protocol.</p>
+              <a href="https://github.com/decentauth" target="_blank">View</a>
+            </div>
+            <div class="project-card">
+              <h3>cool-site</h3>
+              <p>It's this site you're viewing!</p>
+              <a href="/" target="_blank">View</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    <script>
+      const aboutBtn = document.getElementById("aboutBtn");
+      const projectsBtn = document.getElementById("projectsBtn");
+      const aboutSection = document.getElementById("aboutSection");
+      const projectsSection = document.getElementById("projectsSection");
+      const sectionWrapper = document.getElementById("sectionWrapper");
+
+      function setWrapperHeight(section) {
+        // Temporarily show the section to measure height
+        section.style.display = "flex";
+        const height = section.getBoundingClientRect().height;
+        sectionWrapper.style.height = height + "px";
+      }
+
+      // Initialize wrapper height
+      window.addEventListener("DOMContentLoaded", () => {
+        setWrapperHeight(aboutSection);
+      });
+
+      aboutBtn.addEventListener("click", () => {
+        aboutBtn.classList.add("active");
+        projectsBtn.classList.remove("active");
+        aboutSection.style.display = "";
+        projectsSection.style.display = "none";
+        setWrapperHeight(aboutSection);
+      });
+      projectsBtn.addEventListener("click", () => {
+        projectsBtn.classList.add("active");
+        aboutBtn.classList.remove("active");
+        aboutSection.style.display = "none";
+        projectsSection.style.display = "";
+        setWrapperHeight(projectsSection);
+      });
+    </script>
   </body>
 </html>
